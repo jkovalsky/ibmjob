@@ -8,8 +8,7 @@ export class HomePage {
     cy.get('c4d-masthead-profile').click()
   }
 
-  clickLogin(): void {
-    cy.contains('c4d-masthead-profile-item', 'Log in')
-      .click({ force: true })
+  verifyLoginOption(): void {
+    cy.contains('c4d-masthead-profile-item', 'Log in').should('be.visible')
   }
 }

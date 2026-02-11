@@ -11,7 +11,7 @@ describe('IBM Account Login', () => {
   it('1. Login from IBM homepage is available', () => {
     homePage.openHomepage()
     homePage.openProfileMenu()
-    homePage.clickLogin()
+    homePage.verifyLoginOption()
   })
 
   it('2. Login to IBMid account works', () => {
