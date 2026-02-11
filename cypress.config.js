@@ -3,6 +3,7 @@ import { authenticator } from '@otplib/preset-default'
 
 module.exports = defineConfig({
   allowCypressEnv: true,
+  chromeWebSecurity: false,
 
   e2e: {
     env: {
