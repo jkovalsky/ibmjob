@@ -1,6 +1,6 @@
 export class LoginPage {
 
-  visit(): void {
+  openLoginPage(): void {
     cy.visit('https://login.ibm.com/')
   }
 
@@ -20,22 +20,26 @@ export class LoginPage {
     cy.contains('button', 'Log in').click()
   }
 
-  verifyTwoFactorPage(): void {
-    cy.contains('h1', 'Dvojí ověřování').should('be.visible')
-  }
-
-  selectEmailVerification(): void {
-    cy.get('#email_0_item').click()
-  }
-
-  verifyEmailCodeField(): void {
-    cy.contains('label', 'Enter email code').should('be.visible')
-  }
-
-  login(username: string, password: string): void {
+  provideCredentials(username: string, password: string): void {
     this.typeUsername(username)
     this.clickContinue()
     this.typePassword(password)
     this.clickLogin()
+  }
+
+  provideAuthenticatorCode(secret: string): void {
+    cy.task('generateTotp', secret).then((token) => {
+      cy.get('#otp').type(token as string)
+    })
+    cy.contains('button', 'Verify').click()
+  }
+
+  selectAuthenticator2FAMethod() {
+    cy.contains('p', 'Choose a method or device to verify your login.').should('be.visible')
+    cy.get('#totp_0_item').click()
+  }
+
+  verifySuccessfulLogin() {
+    cy.get('#usc--header-action__User').should('be.visible')
   }
 }

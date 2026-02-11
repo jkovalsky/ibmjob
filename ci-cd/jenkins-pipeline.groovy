@@ -7,7 +7,8 @@ pipeline {
   
   environment {
     IBM_ID = credentials('ibm-login')
-    BASE_DIR = "<your_path>/ibmjob" // <-- Change this to your repository path
+    SECRET = credentials('ibm-login-secret')
+    BASE_DIR = "/home/cesilko/Sources/ibmjob" // <-- Change this to your repository path
   }
   
   stages {
@@ -16,7 +17,7 @@ pipeline {
           sh '''
             cd $BASE_DIR
             node -v
-            USERNAME=$IBM_ID_USR PASSWORD=$IBM_ID_PSW npx cypress run
+            USERNAME=$IBM_ID_USR PASSWORD=$IBM_ID_PSW SECRET=$SECRET npx cypress run
           '''
       }
     }

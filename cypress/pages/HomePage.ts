@@ -1,6 +1,6 @@
 export class HomePage {
 
-  visit(): void {
+  openHomepage(): void {
     cy.visit('https://www.ibm.com/')
   }
 
@@ -11,11 +11,5 @@ export class HomePage {
   clickLogin(): void {
     cy.contains('c4d-masthead-profile-item', 'Log in')
       .click({ force: true })
-  }
-
-  navigateToLogin(): void {
-    this.visit()
-    this.openProfileMenu()
-    this.clickLogin()
   }
 }
