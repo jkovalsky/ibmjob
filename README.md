@@ -36,12 +36,12 @@ To run tests in interactive mode in a browser:
 ```bash
 USERNAME=user@example.com PASSWORD=password123 SECRET=1234567890 npm run cypress:open
 ```
-- after opening the Cypress GUI, click on E2E Testing > Start E2E Testing in Electron > login.cy.ts
+- after opening the Cypress GUI, click on **E2E Testing** > **Start E2E Testing in Electron** > **ibm-account-test.cy.ts**
 
 ## CI/CD
 
 ### Jenkins
-This project includes a pipeline script (see `ci-cd/jenkins-pipeline.groovy`) that allows you to run tests within Jenkins jobs. To use it, you need to set the BASE_DIR variable correctly. It must contain the path to the directory where this project was cloned. Also, be sure to provide login credentials and TOTP secret in `ibm-login` and `ibm-login-secret` Jenkins secrets.
+This project includes a pipeline script (see [ci-cd/jenkins-pipeline.groovy](ci-cd/jenkins-pipeline.groovy)) that allows you to run tests within Jenkins jobs. To use it, you need to set the BASE_DIR variable correctly. It must contain the path to the directory where this project was cloned. Also, be sure to provide login credentials and TOTP secret in `ibm-login` and `ibm-login-secret` Jenkins secrets.
 
 ### GitHub
-This project also contains a workflow configuration for GitHub Actions (see `.github/workflows/cypress.yml`) that runs tests on every Push operation or Pull Request creation. Also, be sure to provide login credentials and TOTP secret in GitHub secrets.
+This project also contains a workflow configuration for GitHub Actions (see [.github/workflows/cypress.yml](.github/workflows/cypress.yml)) that runs tests on every Push operation or Pull Request creation. Also, be sure to provide login credentials and TOTP secret in GitHub secrets.

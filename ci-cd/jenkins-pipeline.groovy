@@ -12,7 +12,7 @@ pipeline {
   }
   
   stages {
-    stage('Run Cypress') {
+    stage('Cypress Functional Tests') {
       steps {
           sh '''
             cd $BASE_DIR
