@@ -6,17 +6,18 @@ A suite of automated tests that verify the IBM user account management functiona
 
 The project contains several functional tests written in TypeScript using the Cypress framework, which perform the following actions step by step:
 
-### 1. Login from IBM homepage is available
-- Open the IBM homepage
-- Click on the profile icon
-- Find and click the Log in option in the menu
-
-### 2. Login to IBMid account works
-- open the IBMid account login page
-- enter your username and password one by one
+### 1. Login to IBMid account works
+- open the IBMid login page
+- enter valid username and password
 - verify that the two-factor authentication request is displayed
 - select verification via email
 - verify that the code entry field is displayed
+
+### 2. Login to IBMid account with invalid credentials fails
+- open the IBMid login page
+- enter a valid username and an incorrect password
+- verify that a login error message is displayed
+- repeat the same attempt with an incorrect username, and then with both credentials incorrect
 
 ## Running tests
 
@@ -26,21 +27,21 @@ Requirements:
 Install Cypress and run tests locally without a user interface:
 
 ```bash
-npm install cypress
-USERNAME=user@example.com PASSWORD=password123 npx cypress run
+npm install cypress otplib @otplib/preset-browser
+USERNAME=user@example.com PASSWORD=password123 SECRET=1234567890 npx cypress run
 ```
 
 To run tests in interactive mode in a browser:
 
 ```bash
-USERNAME=user@example.com PASSWORD=password123 npm run cypress:open
+USERNAME=user@example.com PASSWORD=password123 SECRET=1234567890 npm run cypress:open
 ```
 - after opening the Cypress GUI, click on E2E Testing > Start E2E Testing in Electron > login.cy.ts
 
 ## CI/CD
 
 ### Jenkins
-This project includes a pipeline script (see `ci-cd/jenkins-pipeline.groovy`) that allows you to run tests within Jenkins jobs. To use it, you only need to set the BASE_DIR variable correctly. It must contain the path to the directory where this project was cloned.
+This project includes a pipeline script (see `ci-cd/jenkins-pipeline.groovy`) that allows you to run tests within Jenkins jobs. To use it, you need to set the BASE_DIR variable correctly. It must contain the path to the directory where this project was cloned. Also, be sure to provide login credentials and TOTP secret in `ibm-login` and `ibm-login-secret` Jenkins secrets.
 
 ### GitHub
-This project also contains a workflow configuration for GitHub Actions (see `.github/workflows/cypress.yml`) that runs tests on every Push operation or Pull Request creation.
+This project also contains a workflow configuration for GitHub Actions (see `.github/workflows/cypress.yml`) that runs tests on every Push operation or Pull Request creation. Also, be sure to provide login credentials and TOTP secret in GitHub secrets.
