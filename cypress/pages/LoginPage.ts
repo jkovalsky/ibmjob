@@ -24,11 +24,9 @@ export class LoginPage {
     cy.contains('a', 'Not you?').click()
   }
 
-  provideCredentials(username: string, password: string): void {
-    this.typeUsername(username)
-    this.clickContinue()
-    this.typePassword(password)
-    this.clickLogin()
+  selectAuthenticator2FAMethod() {
+    cy.contains('p', 'Choose a method or device to verify your login.').should('be.visible')
+    cy.get('#totp_0_item').click()
   }
 
   provideAuthenticatorCode(secret: string): void {
@@ -36,11 +34,6 @@ export class LoginPage {
       cy.get('#otp').type(token as string)
     })
     cy.contains('button', 'Verify').click()
-  }
-
-  selectAuthenticator2FAMethod() {
-    cy.contains('p', 'Choose a method or device to verify your login.').should('be.visible')
-    cy.get('#totp_0_item').click()
   }
 
   verifySuccessfulLogin() {
