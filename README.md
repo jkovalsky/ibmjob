@@ -10,7 +10,7 @@ The project contains several functional tests written in TypeScript using the Cy
 - open the IBMid login page
 - enter valid username and password
 - verify that the two-factor authentication request is displayed
-- select verification via email
+- select verification via TOTP authentication method
 - verify that the code entry field is displayed
 
 ### 2. Login to IBMid account with invalid credentials fails
@@ -18,6 +18,13 @@ The project contains several functional tests written in TypeScript using the Cy
 - enter a valid username and an incorrect password
 - verify that a login error message is displayed
 - repeat the same attempt with an incorrect username, and then with both credentials incorrect
+
+### 3. Display name in IBMid account can be changed and reset
+- open the IBM profile page
+- login using valid credentials and TOTP authentication method
+- accept the cookies
+- change the display name to "Morpheus" and verify that the change is saved
+- clear the display name
 
 ## Running tests
 
