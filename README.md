@@ -6,17 +6,18 @@ A suite of automated tests that verify the IBM user account management functiona
 
 The project contains several functional tests written in TypeScript using the Cypress framework, which perform the following actions step by step:
 
-### 1. Login from IBM homepage is available
-- Open the IBM homepage
-- Click on the profile icon
-- Find and click the Log in option in the menu
-
-### 2. Login to IBMid account works
-- open the IBMid account login page
-- enter your username and password one by one
+### 1. Login to IBMid account works
+- open the IBMid login page
+- enter valid username and password
 - verify that the two-factor authentication request is displayed
 - select verification via email
 - verify that the code entry field is displayed
+
+### 2. Login to IBMid account with invalid credentials fails
+- open the IBMid login page
+- enter a valid username and an incorrect password
+- verify that a login error message is displayed
+- repeat the same attempt with an incorrect username, and then with both credentials incorrect
 
 ## Running tests
 

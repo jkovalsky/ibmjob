@@ -20,6 +20,10 @@ export class LoginPage {
     cy.contains('button', 'Log in').click()
   }
 
+  clickNotYou(): void {
+    cy.contains('a', 'Not you?').click()
+  }
+
   provideCredentials(username: string, password: string): void {
     this.typeUsername(username)
     this.clickContinue()
@@ -41,5 +45,9 @@ export class LoginPage {
 
   verifySuccessfulLogin() {
     cy.get('#usc--header-action__User').should('be.visible')
+  }
+
+  verifyLoginError() {
+    cy.contains('div', 'Incorrect IBMid or password. Please try again!').should('be.visible')
   }
 }
